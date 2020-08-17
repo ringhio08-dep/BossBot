@@ -319,7 +319,7 @@ bot.remove_command('help')
 @bot.command()
 async def help(ctx):
     #ヘルプの表示
-    embed = discord.Embed(title="いろいろお手伝いするbot(仮)", description="ボスの情報管理や出現リマインダーでお手伝いするBOTです。\nボス狩りのお役に立ててください。\n入力可能なコマンドは以下となります。\n", color=0xff0000)
+    embed = discord.Embed(title="リマインダーとかボス管理するbot", description="ボスの情報管理や出現リマインダーでお手伝いするBOTです。\nボス狩りのお役に立ててください。\n入力可能なコマンドは以下となります。\n", color=0xff0000)
     embed.add_field(name=COMAND_PREFIX + "name", value="各コマンドで入力可能なボス名の一覧を表示します。\ninputまたはchanged欄のあるボス名が入力可能です。\n投入コマンドと表示結果は90秒後に自動的に削除されます。\n", inline=False)
     embed.add_field(name=COMAND_PREFIX + "end [boss] [hhmm]", value="[boss]：ボス名を入力します。(必須項目)\n[hhmm]：エンド時間を4桁の半角数字で入力します。(必須項目)\n正常に受け付けるとBOTから返信があり、次回出現時間の5分前にリマインダーが設定されます。\n", inline=False)
     embed.add_field(name=COMAND_PREFIX + "set [boss] [hhmm]", value="[boss]：ボス名を入力します。(必須項目)\n[hhmm]：リマインドする時間を4桁の半角数字で入力します。(必須項目)\n正常に受け付けるとBOTから返信があり、入力した時間にリマインダーが設定されます。\n", inline=True)

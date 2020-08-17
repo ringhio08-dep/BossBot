@@ -9,6 +9,7 @@ import os
 import traceback
 import pytz
 import time
+import logging
 
 from discord.ext import commands
 from datetime import datetime 
@@ -29,6 +30,8 @@ notes = ""
 boot_time = ""
 check_time = ""
 check_sec = ""
+
+logging.basicConfig(level=logging.ERROR)
 
 #********** 起動時イベント **********
 @bot.event

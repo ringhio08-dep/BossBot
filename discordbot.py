@@ -359,8 +359,8 @@ async def loop():
     chk_hour = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%H')
     chk_min = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%M')
 
-    #global send_channel
-    #send_channel = bot.get_channel(CHANNEL_ID)
+    global send_channel
+    send_channel = bot.get_channel(CHANNEL_ID)
     cnt = 0
     delete_row = 0
 

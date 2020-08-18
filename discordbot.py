@@ -9,7 +9,6 @@ import os
 import traceback
 import pytz
 import time
-import logging
 
 from discord.ext import commands
 from datetime import datetime 
@@ -24,14 +23,13 @@ COMAND_PREFIX = INIFILE.get('Discord', 'COMAND_PREFIX')
 DEL_TIME = int(INIFILE.get('Discord', 'DEL_TIME'))
 
 token = os.environ['DISCORD_BOT_TOKEN']
+
 bot = commands.Bot(command_prefix= COMAND_PREFIX)
 send_channel = ""
 notes = ""
 boot_time = ""
 check_time = ""
 check_sec = ""
-
-logging.basicConfig(level=logging.ERROR)
 
 #********** 起動時イベント **********
 @bot.event

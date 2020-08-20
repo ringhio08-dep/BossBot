@@ -137,15 +137,15 @@ async def set(ctx, boss: str, time: str):
     global notes
     msg = ""
     target_boss = ""
+    type = '出現'
 
     #入力値を登録ボス名へ変換
     target_boss = sub_module.ChangeName(boss)
 
     #入力コマンドの正常性判定
     if target_boss == "":
-        await ctx.send('入力されたボス名が正しくありません :sob:\n再入力してください :pray:')
-        sys.exit()
-    else:
+        target_boss = boss
+        type = '開始'
         msg = '【' + target_boss + '】の登録を受け付けました :memo: '
 
     if not int(len(time)) == 4:
@@ -183,12 +183,13 @@ async def set(ctx, boss: str, time: str):
     target_time = set_hour + ':' + set_min
 
     msg = msg + '\n <' + sub_module.MakeTime(target_time) + '> にリマインダーをセットしました :alarm_clock:\n'
-    msg = msg + '(' + notes + ')'
+    if not notes == "":
+        msg = msg + '(' + notes + ')'
 
     #更新処理
     with open('./data/Schedule.csv', 'a', newline='', encoding = "utf_8") as write_csv:
         writer = csv.writer(write_csv)
-        writer.writerow([target_time, target_boss,'temp','出現',notes])
+        writer.writerow([sub_module.MakeTime(target_time), target_boss,'temp',type,notes])
     write_csv.close()
 
     #リマインダー設定の通知
@@ -376,7 +377,7 @@ async def loop():
             cnt = cnt + 1
             chk_time = sub_module.MakeTime(row[0])
             if now == chk_time:
-                event_msg = '【' + row[1] + '】の' + row[3] + '5分前をお知らせします :incoming_envelope:\n(出現時間：' + row[0]
+                event_msg = '【' + row[1] + '】の' + row[3] + '5分前をお知らせします :incoming_envelope:\n(' + row[3] + '時間：' + row[0]
                 if not row[4] == '':
                     event_msg = event_msg +  ' , ' + row[4]
                 event_msg = event_msg + ')'

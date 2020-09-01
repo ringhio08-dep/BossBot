@@ -47,7 +47,7 @@ async def on_ready():
     global boot_time
     boot_time = datetime.now(pytz.timezone('Asia/Tokyo'))
 
-    await CHNAME.send(':bulb: 起動しました :bulb:\n'　+ boot_time)
+    await send_channel.send(':bulb: 起動しました :bulb:\n'　+ boot_time)
     
 #********** endコマンド **********
 @bot.command()

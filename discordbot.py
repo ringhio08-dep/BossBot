@@ -9,6 +9,7 @@ import os
 import traceback
 import pytz
 import time
+import math
 
 from discord.ext import commands
 from datetime import datetime 
@@ -301,6 +302,16 @@ async def add(ctx, input: str, changed: str):
             writer.writerow([input, changed])
         write_csv.close()
         await ctx.send('【' + input + '】の変換情報を登録しました :ok_hand:')
+
+#********** shareコマンド **********
+@bot.command()
+async def share(ctx, price: int, tax: int, num: int):    
+    cal = 0
+    take = 0
+    cal = (price*(1-(tax/100)))/num
+    cal = math.floor(cal)
+    take = math.floor(cal*(1-(tax/100)))
+    await ctx.send('【:money_mouth: 1人当たり' + str(cal) + 'ダイヤで取引所へ出品してください :money_mouth:】\n   (手取りは' + str(take) + 'ダイヤとなります:gem::sparkles:)')
 
 #********** mainteコマンド **********
 @bot.command()

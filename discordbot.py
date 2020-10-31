@@ -308,8 +308,8 @@ async def add(ctx, input: str, changed: str):
 async def share(ctx, price: int, tax: int, num: int):    
     cal = 0
     take = 0
-    cal = (price*(1-(tax/100)))/num
-    cal = math.floor(cal)
+    cal = math.floor(price*(1-(tax/100)))
+    cal = math.floor(cal/num)
     take = math.floor(cal*(1-(tax/100)))
     await ctx.send('【:money_mouth: 1人当たり' + str(cal) + 'ダイヤで取引所へ出品してください :money_mouth:】\n   (手取りは' + str(take) + 'ダイヤとなります:gem::sparkles:)')
 

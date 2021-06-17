@@ -234,8 +234,9 @@ async def name(ctx):
 async def today(ctx):
     #その日の定常/固定/登録済みの予定を表示
     weekday = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%a')
+    now = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%H:%M')
     df = pd.read_csv("./data/Schedule.csv", encoding = "utf_8")
-    df_pickup = df[(df["remark"].isnull()) | (df["remark"] == weekday) | (df["remark"] == "temp")]
+    df_pickup = df[(df["time"]) > now) | (df["remark"].isnull()) | (df["remark"] == weekday) | (df["remark"] == "temp")]
     await ctx.send(df_pickup[["time","events"]])
 
 #********** webコマンド **********

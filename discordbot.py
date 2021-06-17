@@ -236,7 +236,7 @@ async def today(ctx):
     weekday = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%a')
     now = datetime.now(pytz.timezone('Asia/Tokyo')).strftime('%H:%M')
     df = pd.read_csv("./data/Schedule.csv", encoding = "utf_8")
-    df_pickup = df[(df["time"]) > now) | (df["remark"].isnull()) | (df["remark"] == weekday) | (df["remark"] == "temp")]
+    df_pickup = df[(df["remark"].isnull()) | (df["remark"] == weekday) | (df["remark"] == "temp")]
     await ctx.send(df_pickup[["time","events"]])
 
 #********** webコマンド **********
